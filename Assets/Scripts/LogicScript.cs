@@ -14,10 +14,14 @@ public class LogicScript : MonoBehaviour
     public GameObject gameOverBackground;
     public GameObject pauseUI;
     public GameObject pauseBackground;
+    public AudioManagerScript audioManager;
+    private float hitPitch;
 
     private void Start()
     {
         isAlive = true;
+        hitPitch = 1.0f;
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManagerScript>();
     }
 
     void Update()
@@ -37,8 +41,13 @@ public class LogicScript : MonoBehaviour
     {
         playerScore += scoreToAdd;
         scoreText.text = playerScore.ToString();
+        audioManager.Play("hit", 1.0f, hitPitch);
+        hitPitch = hitPitch + 0.2f;
+        if (hitPitch >= 1.8f) hitPitch = 1.0f;
+
     }
 
+    // Hover button effect
     public void enterButton(GameObject effect)
     {
         effect.SetActive(true);
@@ -64,8 +73,6 @@ public class LogicScript : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         isAlive = true;
     }
-
-
 
     // Pause menu //
     public void PauseGame()
