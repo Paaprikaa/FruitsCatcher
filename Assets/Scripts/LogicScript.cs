@@ -50,6 +50,7 @@ public class LogicScript : MonoBehaviour
     // Hover button effect
     public void enterButton(GameObject effect)
     {
+        audioManager.Play("circle", 1.0f, 1.0f);
         effect.SetActive(true);
     }
     public void exitButton(GameObject effect)
