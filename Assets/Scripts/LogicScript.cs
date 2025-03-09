@@ -36,7 +36,6 @@ public class LogicScript : MonoBehaviour
         }
     }
 
-    [ContextMenu("increase score")]
     public void AddScore(int scoreToAdd)
     {
         playerScore += scoreToAdd;

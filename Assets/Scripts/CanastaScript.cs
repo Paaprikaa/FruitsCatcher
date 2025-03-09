@@ -8,14 +8,12 @@ public class CanastaScript : MonoBehaviour
     public LogicScript logic;
     public AudioManagerScript audioManager;
 
-    // Start is called before the first frame update
     void Start()
     {
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManagerScript>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (logic.isAlive)
