@@ -13,8 +13,7 @@ public class FrutaScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Basket") &&
-            collision.transform.GetChild(1).gameObject.CompareTag("Basket"))
+        if (collision.gameObject.CompareTag("Basket") && collision.transform.GetChild(1).gameObject.CompareTag("Basket"))
         {
             Destroy(gameObject);
             logic.AddScore(1);

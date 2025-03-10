@@ -15,6 +15,7 @@ public class LogicScript : MonoBehaviour
     public GameObject pauseUI;
     public GameObject pauseBackground;
     public AudioManagerScript audioManager;
+    public TopScoresScript topScores;
     private float hitPitch;
 
     private void Start()
@@ -43,19 +44,8 @@ public class LogicScript : MonoBehaviour
         audioManager.Play("hit", 1.0f, hitPitch);
         hitPitch = hitPitch + 0.2f;
         if (hitPitch >= 1.8f) hitPitch = 1.0f;
-
     }
 
-    // Hover button effect
-    public void enterButton(GameObject effect)
-    {
-        audioManager.Play("circle", 1.0f, 1.0f);
-        effect.SetActive(true);
-    }
-    public void exitButton(GameObject effect)
-    {
-        effect.SetActive(false);
-    }
     public void QuitGame()
     {
         Application.Quit();
@@ -67,11 +57,16 @@ public class LogicScript : MonoBehaviour
         gameOverUI.SetActive(true);
         gameOverBackground.SetActive(true);
         isAlive = false;
+        topScores.AddScore(playerScore);
     }
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         isAlive = true;
+    }
+    public void ScoreGame()
+    {
+        SceneManager.LoadScene("ScoreScene");
     }
 
     // Pause menu //
