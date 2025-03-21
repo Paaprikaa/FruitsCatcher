@@ -11,18 +11,17 @@ public class FrutaScript : MonoBehaviour
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    // The only trigger is 'Basket Trigger'
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Basket") && collision.transform.GetChild(1).gameObject.CompareTag("Basket"))
-        {
-            Destroy(gameObject);
-            logic.AddScore(1);
-        }
-        else
-        {
-            Destroy(gameObject);
-            logic.GameOver();
+        logic.AddScore(1);
+        Destroy(gameObject);
+    }
 
-        }
+    // if is not 'Basket Trigger', then you lose the game
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        Destroy(gameObject);
+        logic.GameOver();
     }
 }
